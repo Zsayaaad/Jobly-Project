@@ -423,6 +423,38 @@
     box-shadow: 2px 2px 0px 0px #ffffff;
   }
 
+  /* ---------------------------------------------------------
+     JOB STATUS BADGES (Dynamic Class Names)
+     --------------------------------------------------------- */
+
+  /* Shared Base Styles for all Status Badges */
+  .Active,
+  .Pending,
+  .Urgent,
+  .Closed {
+    @apply border-2 border-on-background px-sm py-xs font-mono text-[14px] font-bold tracking-wider uppercase inline-block leading-none;
+  }
+
+  /* Specific Color Overrides */
+  .Active {
+    @apply bg-primary-container text-on-primary-container;
+  }
+
+  .Pending {
+    @apply bg-amber-300 text-black;
+  }
+  :where(.dark, .dark *) .Pending {
+    @apply bg-amber-500 text-black;
+  }
+
+  .Urgent {
+    @apply bg-error text-on-error;
+  }
+
+  .Closed {
+    @apply bg-surface-container-high text-on-surface-variant;
+  }
+
   /* ICONOGRAPHY DEFAULTS */
   .material-symbols-outlined {
     font-variation-settings:

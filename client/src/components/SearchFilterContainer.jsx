@@ -1,7 +1,12 @@
-import React from "react";
+import { useAllJobsContext } from "../context/AllJobsContext";
 
 const SearchFilterContainer = () => {
-  return <h1>SearchFilterContainer</h1>;
+  const { data } = useAllJobsContext();
+
+  const { jobs } = data;
+  console.log(jobs);
+
+  return <div>SearchFilterContainer</div>;
 };
 
 export default SearchFilterContainer;
