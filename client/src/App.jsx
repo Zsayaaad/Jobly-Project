@@ -19,10 +19,13 @@ import { dashboardLoader } from "./pages/Dashboard/loader";
 import { addJobAction } from "./pages/AddJob/action";
 import { allJobsLoader } from "./pages/AllJobs/loader";
 
+const HydrateFallback = () => <div />;
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    HydrateFallback,
     errorElement: <Error />,
     children: [
       {
@@ -43,6 +46,7 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <DashboardLayout />,
         loader: dashboardLoader,
+        HydrateFallback,
         children: [
           {
             index: true,
@@ -57,6 +61,7 @@ const router = createBrowserRouter([
             path: "allJobs",
             element: <AllJobs />,
             loader: allJobsLoader,
+            HydrateFallback,
           },
           {
             path: "profile",
