@@ -7,7 +7,7 @@ export { default as Error } from "./Error";
 export { default as Stats } from "./Stats";
 export { default as AllJobs } from "./AllJobs/AllJobs";
 export { default as AddJob } from "./AddJob/AddJob";
-export { default as EditJob } from "./EditJob";
+export { default as EditJob } from "./EditJob/EditJob";
 export { default as DeleteJob } from "./DeleteJob";
 export { default as Profile } from "./Profile";
 export { default as Admin } from "./Admin";

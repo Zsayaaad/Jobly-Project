@@ -1,4 +1,4 @@
-const FormRowSelect = ({ name, labelText, list }) => {
+const FormRowSelect = ({ name, labelText, list, defaultValue }) => {
   return (
     <div>
       <label className="text-mono-label uppercase mb-xs block">
@@ -10,6 +10,7 @@ const FormRowSelect = ({ name, labelText, list }) => {
            focus:border-primary focus:shadow-[2px_2px_0px_0px_var(--color-on-background)] transition-all appearance-none pr-10"
           name={name}
           id={name}
+          defaultValue={defaultValue}
         >
           {Object.values(list).map((itemValue) => {
             return (

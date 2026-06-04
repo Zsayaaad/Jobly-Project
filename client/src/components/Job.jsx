@@ -1,7 +1,7 @@
 import { Form, Link } from "react-router-dom";
 
 const Job = ({
-  // _id,
+  _id,
   company,
   position,
   jobStatus,
@@ -43,7 +43,10 @@ const Job = ({
 
       <footer className="p-md flex justify-between items-center bg-surface-container-lowest">
         <div className="flex gap-md">
-          <Link className="text-mono-label font-bold uppercase border-2 border-on-background px-md py-xs hover:bg-surface-container transition-colors brutalist-active">
+          <Link
+            to={`../editJob/${_id}`}
+            className="text-mono-label font-bold uppercase border-2 border-on-background px-md py-xs hover:bg-surface-container transition-colors brutalist-active"
+          >
             Edit
           </Link>
           <Form>

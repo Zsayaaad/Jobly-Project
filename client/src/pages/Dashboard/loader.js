@@ -6,8 +6,7 @@ export const dashboardLoader = async () => {
     const { data } = await customFetch.get("/users/current-user");
     return data;
   } catch (error) {
-    // console.log(error);
     toast.error(error?.response?.data?.msg);
-    return redirect("/");
+    return redirect("/login");
   }
 };

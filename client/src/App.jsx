@@ -11,6 +11,7 @@ import {
   Register,
   Stats,
   Admin,
+  EditJob,
 } from "./pages";
 
 import { registerAction } from "./pages/Register/action";
@@ -18,6 +19,8 @@ import { loginAction } from "./pages/Login/action";
 import { dashboardLoader } from "./pages/Dashboard/loader";
 import { addJobAction } from "./pages/AddJob/action";
 import { allJobsLoader } from "./pages/AllJobs/loader";
+import { editJobLoader } from "./pages/EditJob/loader";
+import { editJobAction } from "./pages/EditJob/action";
 
 const HydrateFallback = () => <div />;
 
@@ -70,6 +73,12 @@ const router = createBrowserRouter([
           {
             path: "admin",
             element: <Admin />,
+          },
+          {
+            path: "editJob/:id",
+            element: <EditJob />,
+            loader: editJobLoader,
+            action: editJobAction,
           },
         ],
       },
