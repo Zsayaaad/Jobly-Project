@@ -49,7 +49,8 @@ const Job = ({
           >
             Edit
           </Link>
-          <Form>
+          {/* We put action here in the Form cuz in delete we does not have Delete.jsx page.. we redirect to the same page */}
+          <Form method="post" action={`../deleteJob/${_id}`}>
             <button
               type="submit"
               className="text-mono-label font-bold uppercase border-2 border-on-background px-md py-xs hover:bg-error-container transition-colors brutalist-active"
@@ -58,9 +59,9 @@ const Job = ({
             </button>
           </Form>
         </div>
-        <Link className="text-mono-label font-bold uppercase underline decoration-2 underline-offset-4 hover:text-primary transition-colors">
+        {/* <Link className="text-mono-label font-bold uppercase underline decoration-2 underline-offset-4 hover:text-primary transition-colors">
           View Details
-        </Link>
+        </Link> */}
       </footer>
     </article>
   );
