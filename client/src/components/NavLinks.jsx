@@ -3,12 +3,17 @@ import { useDashboardContext } from "../context/DashboardContext";
 import links from "../utils/links";
 
 const NavLinks = () => {
-  const { isSidebarCollapsed, closeMobileSidebar } = useDashboardContext();
+  const { isSidebarCollapsed, closeMobileSidebar, user } =
+    useDashboardContext();
 
   return (
     <nav className="grow px-3 py-4 flex flex-col gap-2 overflow-y-auto overflow-x-hidden">
       {links.map((link) => {
         const { text, path, icon } = link;
+
+        const { role } = user;
+        if (path === "admin" && role !== "admin") return;
+
         return (
           <NavLink
             to={path}

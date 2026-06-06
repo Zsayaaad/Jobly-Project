@@ -22,7 +22,7 @@ export const getApplicationStats = async (req, res) => {
 
   const jobStatusStats = await JobModel.aggregate([
     { $group: { _id: "$jobStatus", count: { $sum: 1 } } },
-    // Output: [ { "_id": "pending", "count": 12 }, { }, ... ]
+    // Output: [ { "_id": "pending", "count": +1 }, { }, ... ]
   ]);
 
   const jobStatusCounts = Object.values(JOB_STATUS).reduce((stats, status) => {
