@@ -7,6 +7,6 @@ export const dashboardLoader = async () => {
     return data;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
-    return redirect("/login");
+    return redirect("/");
   }
 };
