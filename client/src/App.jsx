@@ -23,6 +23,7 @@ import { editJobLoader } from "./pages/EditJob/loader";
 import { editJobAction } from "./pages/EditJob/action";
 import { deleteJobAction } from "./pages/DeleteJob/action";
 import { adminLoader } from "./pages/Admin/loader";
+import { profileAction } from "./pages/Profile/action";
 
 const HydrateFallback = () => <div />;
 
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <Profile />,
+            action: profileAction,
           },
           {
             path: "admin",

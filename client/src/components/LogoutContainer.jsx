@@ -14,7 +14,11 @@ const LogoutContainer = () => {
         }`}
         onClick={() => setShowLogout(!showLogout)}
       >
-        <span className="material-symbols-outlined">account_circle</span>
+        {user.avatar ? (
+          <img src={user.avatar} alt="avatar" className="w-6 h-6 object-cover border border-on-surface" />
+        ) : (
+          <span className="material-symbols-outlined">account_circle</span>
+        )}
         <span className="font-mono-label uppercase hidden md:block">
           {user?.name || "User"}
         </span>
