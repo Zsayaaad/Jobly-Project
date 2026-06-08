@@ -15,6 +15,14 @@ import userRouter from "./routes/userRouter.js";
 import { errorHandlerMiddleware } from "./middleware/errorHandlerMiddleware.js";
 import { authenticatedUser } from "./middleware/authMiddleware.js";
 
+// public
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "./public")));
+
 // Condition to log only in development
 if (process.env.NODE_ENV === "development") {
   // This package to log info about `our request that happened

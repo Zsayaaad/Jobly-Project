@@ -400,6 +400,32 @@
   .stat-legend-dot {
     @apply w-3 h-3 border-2 border-on-background block;
   }
+
+  /* Profile Settings */
+  .profile-card {
+    @apply bg-surface-container-lowest border-2 border-on-background;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  :where(.dark, .dark *) .profile-card {
+    box-shadow: 4px 4px 0px 0px #ffffff;
+  }
+
+  .profile-card-header {
+    @apply p-lg border-b-2 border-on-background bg-surface-container-lowest flex flex-col gap-lg sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .profile-avatar {
+    @apply relative h-24 w-24 shrink-0 border-2 border-on-background bg-surface-container-low overflow-hidden;
+  }
+
+  .btn-profile-secondary {
+    @apply border-2 border-on-background bg-surface-container px-6 py-3 uppercase tracking-widest transition-colors hover:bg-surface-dim;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
 }
 
 /* ---------------------------------------------------------
