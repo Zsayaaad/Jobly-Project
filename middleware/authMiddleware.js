@@ -1,4 +1,5 @@
 import {
+  BadRequestError,
   UnauthenticatedError,
   UnauthorizedError,
 } from "../errors/customErrors.js";
@@ -11,8 +12,8 @@ export const authenticatedUser = (req, res, next) => {
 
   try {
     const { userId, role } = verifyToken(token);
-
-    req.user = { userId, role };
+    const testUser = userId === "6a28151db45faca617f5da07";
+    req.user = { userId, role, testUser };
     next();
   } catch (error) {
     throw new UnauthenticatedError("authentication invalid");
@@ -26,4 +27,9 @@ export const authorizePermissions = (...roles) => {
     }
     next();
   };
+};
+
+export const checkForTestUser = (req, res, next) => {
+  if (req.user.testUser) throw new BadRequestError("Demo User. Read Only!");
+  next();
 };
