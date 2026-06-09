@@ -47,5 +47,12 @@ export const getApplicationStats = async (req, res) => {
     return acc; // => { Closed: 64, Pending: 49, Urgent: 42, Active: 44 }
   }, {});
 
-  res.status(StatusCodes.OK).json({ users, jobs, stats });
+  const defaultStats = {
+    Closed: stats.Closed || 0,
+    Pending: stats.Pending || 0,
+    Urgent: stats.Urgent || 0,
+    Active: stats.Active || 0,
+  };
+
+  res.status(StatusCodes.OK).json({ users, jobs, defaultStats });
 };
