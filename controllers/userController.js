@@ -4,6 +4,7 @@ import JobModel from "../models/JobModel.js";
 import { JOB_STATUS } from "../utils/constants.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
+import { log } from "console";
 
 export const getCurrentUser = async (req, res) => {
   const user = await UserModel.findOne({ _id: req.user.userId });
@@ -35,28 +36,16 @@ export const getApplicationStats = async (req, res) => {
   const users = await UserModel.countDocuments();
   const jobs = await JobModel.countDocuments();
 
-  const jobStatusStats = await JobModel.aggregate([
+  let stats = await JobModel.aggregate([
     { $group: { _id: "$jobStatus", count: { $sum: 1 } } },
     // Output: [ { "_id": "pending", "count": +1 }, { }, ... ]
   ]);
 
-  const jobStatusCounts = Object.values(JOB_STATUS).reduce((stats, status) => {
-    // Object[Key] To Return { Key: 0 }
-    stats[status] = 0; // ex: { Active: 0 } === stats.Active = 0;
-
-    return stats; // stats is the object that contains each status and it's value.. => { Active: 3, Closed:0, ... }
+  stats = stats.reduce((acc, curr) => {
+    const { _id: title, count } = curr;
+    acc[title] = count;
+    return acc; // => { Closed: 64, Pending: 49, Urgent: 42, Active: 44 }
   }, {});
-  // reduce to iterate on the array of values of JOB_STATUS and put zeros to each value
-  // jobStatusCounts: {
-  //    Active: 0,
-  //    Closed: 0,
-  //    Urgent: 0,
-  //    Pending: 0
-  // }
 
-  jobStatusStats.forEach((stat) => {
-    jobStatusCounts[stat._id] = stat.count;
-  });
-
-  res.status(StatusCodes.OK).json({ users, jobs, jobStatusCounts });
+  res.status(StatusCodes.OK).json({ users, jobs, stats });
 };

@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 
 const Admin = () => {
-  const { users, jobs, jobStatusCounts } = useLoaderData();
+  const { users, jobs, stats } = useLoaderData();
 
   return (
     <main className="flex-1 p-12 overflow-y-auto h-screen">
@@ -50,19 +50,19 @@ const Admin = () => {
             <div className="stat-legend">
               <div className="stat-legend-item">
                 <span className="stat-legend-dot Active"></span>
-                <span>{jobStatusCounts.Active} ACTIVE</span>
+                <span>{stats.Active} ACTIVE</span>
               </div>
               <div className="stat-legend-item">
                 <span className="stat-legend-dot Closed"></span>
-                <span>{jobStatusCounts.Closed} CLOSED</span>
+                <span>{stats.Closed} CLOSED</span>
               </div>
               <div className="stat-legend-item">
                 <span className="stat-legend-dot Urgent"></span>
-                <span>{jobStatusCounts.Urgent} URGENT</span>
+                <span>{stats.Urgent} URGENT</span>
               </div>
               <div className="stat-legend-item">
                 <span className="stat-legend-dot Pending"></span>
-                <span>{jobStatusCounts.Pending} PENDING</span>
+                <span>{stats.Pending} PENDING</span>
               </div>
             </div>
           </div>
