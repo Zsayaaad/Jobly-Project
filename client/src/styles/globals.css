@@ -289,6 +289,9 @@
     @apply w-full py-5 bg-surface-container-lowest text-on-background border-2 border-on-background hover:bg-primary-container hover:text-black transition-colors mt-lg;
     box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   }
+  .btn-auth-submit:disabled {
+    @apply cursor-not-allowed opacity-60 hover:bg-surface-container-lowest hover:text-on-background;
+  }
   .btn-auth-submit:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);

@@ -1,14 +1,11 @@
-import { FormRow } from "../../components";
+import { FormRow, SubmitButton } from "../../components";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import LinkedInIcon from "../../assets/icons/LinkedInIcon";
-import { Form, useNavigation } from "react-router-dom";
+import { Form } from "react-router-dom";
 import TabSwitcher from "../../components/auth/TabSwitcher";
 import AuthHeader from "../../components/auth/AuthHeader";
 
 const Register = () => {
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background text-on-background p-gutter">
       <AuthHeader />
@@ -99,18 +96,7 @@ const Register = () => {
               </label>
             </div>
 
-            {/* Submit Button */}
-            <button className="btn-auth-submit" type="submit">
-              {isSubmitting ? (
-                <span className="text-h3 uppercase tracking-tighter">
-                  Submitting...
-                </span>
-              ) : (
-                <span className="text-h3 uppercase tracking-tighter">
-                  Initialize Profile
-                </span>
-              )}
-            </button>
+            <SubmitButton text="Initialize Profile" />
           </Form>
 
           {/* Social Auth */}

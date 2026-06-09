@@ -1,12 +1,10 @@
-import { Form, useNavigation, useOutletContext } from "react-router-dom";
-import { FormRow } from "../../components";
+import { Form, useOutletContext } from "react-router-dom";
+import { FormRow, SubmitButton } from "../../components";
 
 const Profile = () => {
   const { user } = useOutletContext();
 
   const { name, lastName, email, location, avatar } = user;
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
 
   return (
     <main className="min-h-screen p-lg md:p-xl flex justify-center">
@@ -96,16 +94,10 @@ const Profile = () => {
             </div>
 
             <div className="flex flex-col justify-end gap-md border-t-2 border-on-background pt-lg sm:flex-row p-lg">
-              <button className="btn-profile-secondary" type="reset">
+              {/* <button className="btn-profile-secondary" type="reset">
                 Discard
-              </button>
-              <button
-                className="btn-brutalist-action bg-primary-container px-8 py-3 text-on-surface brutalist-active disabled:cursor-not-allowed disabled:opacity-60"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Saving..." : "Save Changes"}
-              </button>
+              </button> */}
+              <SubmitButton text="Save Changes" loadingText="Saving..." />
             </div>
           </Form>
         </section>

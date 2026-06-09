@@ -1,13 +1,14 @@
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import LinkedInIcon from "../../assets/icons/LinkedInIcon";
-import { AuthHeader, FormRow, TabSwitcher } from "../../components";
-import { Form, useNavigation } from "react-router-dom";
+import {
+  AuthHeader,
+  FormRow,
+  SubmitButton,
+  TabSwitcher,
+} from "../../components";
+import { Form } from "react-router-dom";
 
 const Login = () => {
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
-  // const errors = useActionData();
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background text-on-background p-gutter">
       <AuthHeader />
@@ -72,18 +73,7 @@ const Login = () => {
               </label>
             </div>
 
-            {/* Submit Button */}
-            <button className="btn-auth-submit" type="submit">
-              {isSubmitting ? (
-                <span className="text-h3 uppercase tracking-tighter">
-                  Submitting...
-                </span>
-              ) : (
-                <span className="text-h3 uppercase tracking-tighter">
-                  Submit
-                </span>
-              )}
-            </button>
+            <SubmitButton text="Submit" />
           </Form>
 
           {/* Social Auth */}

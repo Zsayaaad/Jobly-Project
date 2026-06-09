@@ -1,11 +1,9 @@
-import { Form, useNavigation, useOutletContext } from "react-router-dom";
+import { Form, useOutletContext } from "react-router-dom";
 import FormRow from "../../components/FormRow";
 import { JOB_STATUS, JOB_TYPE } from "../../../../utils/constants";
-import { FormRowSelect } from "../../components";
+import { FormRowSelect, SubmitButton } from "../../components";
 const AddJob = () => {
   const { user } = useOutletContext();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
 
   return (
     <main className="p-lg md:p-xl grow flex justify-center bg-background min-h-screen">
@@ -70,13 +68,7 @@ const AddJob = () => {
           </div>
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-md">
-            <button
-              type="submit"
-              className="btn-brutalist-action  bg-primary-container w-full py-gutter text-2xl font-black sm:flex-2 "
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting.." : "Submit Job"}
-            </button>
+            <SubmitButton text="Submit Job" />
           </div>
         </Form>
       </div>
