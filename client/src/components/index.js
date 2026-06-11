@@ -11,3 +11,4 @@ export { default as FormRowSelect } from "./FormRowSelect";
 export { default as SearchFilterContainer } from "./SearchFilterContainer";
 export { default as JobsContainer } from "./JobsContainer";
 export { default as SubmitButton } from "./SubmitButton";
+export { default as StatCard } from "./StatCard";

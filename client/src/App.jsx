@@ -24,6 +24,7 @@ import { editJobAction } from "./pages/EditJob/action";
 import { deleteJobAction } from "./pages/DeleteJob/action";
 import { adminLoader } from "./pages/Admin/loader";
 import { profileAction } from "./pages/Profile/action";
+import { statsLoader } from "./pages/Stats/loader";
 
 const HydrateFallback = () => <div />;
 
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
           {
             path: "stats",
             element: <Stats />,
+            loader: statsLoader,
           },
           {
             path: "allJobs",

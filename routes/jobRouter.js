@@ -6,6 +6,7 @@ import {
   updateJob,
   createJob,
   deleteJob,
+  showStats,
 } from "../controllers/jobController.js";
 import {
   validateIdParam,
@@ -18,12 +19,12 @@ router
   .get(getAllJobs)
   .post(checkForTestUser, validateJobInput, createJob);
 
+router.route("/stats").get(showStats);
 /**
  * 📌 Golden rule in Express.js:
       Always put the Static Routes (fixed routes defined by clear words like /stats, /search, /profile) before 
       the Dynamic Routes (variable routes containing /:id or /:name).
  */
-
 router
   .route("/:id")
   .get(validateIdParam, getJob)

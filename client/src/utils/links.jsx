@@ -10,7 +10,7 @@ const links = [
     icon: "work",
   },
   {
-    text: "analytics",
+    text: "stats",
     path: "stats",
     icon: "leaderboard",
   },

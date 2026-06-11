@@ -4,7 +4,7 @@ export { default as HomeLayout } from "./HomeLayout";
 export { default as Register } from "./Register/Register";
 export { default as Login } from "./Login/Login";
 export { default as Error } from "./Error";
-export { default as Stats } from "./Stats";
+export { default as Stats } from "./Stats/Stats";
 export { default as AllJobs } from "./AllJobs/AllJobs";
 export { default as AddJob } from "./AddJob/AddJob";
 export { default as EditJob } from "./EditJob/EditJob";

@@ -367,6 +367,20 @@
     box-shadow: 8px 8px 0px 0px #ffffff;
   }
 
+  .stat-card-brutalist {
+    @apply bg-white dark:bg-black border-4 border-on-surface;
+    box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  }
+  :where(.dark, .dark *) .stat-card-brutalist {
+    box-shadow: 8px 8px 0px 0px #ffffff;
+  }
+  .stat-card-brutalist:hover {
+    box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+  }
+  :where(.dark, .dark *) .stat-card-brutalist:hover {
+    box-shadow: 12px 12px 0px 0px #ffffff;
+  }
+
   .stat-card-header {
     @apply flex justify-between items-start mb-md border-b-2 border-on-background pb-md;
   }
