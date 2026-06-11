@@ -3,10 +3,23 @@ import JobModel from "../models/JobModel.js";
 import { StatusCodes } from "http-status-codes";
 
 export const getAllJobs = async (req, res) => {
-  const isAdmin = req.user.role === "admin";
+  // const isAdmin = req.user.role === "admin";
+  const { search } = req.query;
+
+  const queryObject = {
+    createdBy: req.user.userId,
+  };
+
+  if (search) {
+    queryObject.$or = [
+      { position: { $regex: search, $options: "i" } },
+      { company: { $regex: search, $options: "i" } },
+    ];
+  }
 
   const jobs = await JobModel.find(
-    isAdmin ? {} : { createdBy: req.user.userId },
+    queryObject,
+    // isAdmin ? {} : { createdBy: req.user.userId },
   );
   res.status(StatusCodes.OK).json({ jobs });
 };
