@@ -3,10 +3,10 @@ import { JobsContainer, SearchFilterContainer } from "../../components";
 import { AllJobsContext } from "../../context/AllJobsContext";
 
 const AllJobs = () => {
-  const { data } = useLoaderData();
+  const { data, searchValues } = useLoaderData();
 
   return (
-    <AllJobsContext.Provider value={{ data }}>
+    <AllJobsContext.Provider value={{ data, searchValues }}>
       <main className="flex-1 p-lg md:p-xl bg-background min-h-screen">
         {/* Page Header */}
         <header className="flex justify-between items-center mb-xl">

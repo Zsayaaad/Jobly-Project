@@ -24,7 +24,7 @@ export const allJobsLoader = async ({ request }) => {
 
     data.jobs = jobs;
 
-    return { data };
+    return { data, searchValues: params };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;

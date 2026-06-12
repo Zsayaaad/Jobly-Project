@@ -5,6 +5,7 @@ const FormRow = ({
   placeholder,
   dataIcon,
   defaultValue,
+  onChange,
 }) => {
   return (
     <div className="space-y-xs group">
@@ -31,6 +32,7 @@ const FormRow = ({
           type={type}
           defaultValue={defaultValue}
           required
+          onChange={onChange}
         />
       </div>
     </div>

@@ -1,15 +1,14 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useSubmit } from "react-router-dom";
 import { useAllJobsContext } from "../context/AllJobsContext";
 import FormRow from "./FormRow";
 import FormRowSelect from "./FormRowSelect";
 import { JOB_SORT_BY, JOB_STATUS, JOB_TYPE } from "../../../utils/constants";
-import SubmitButton from "./SubmitButton";
 
 const SearchFilterContainer = () => {
-  const { data } = useAllJobsContext();
+  const submit = useSubmit();
+  const { searchValues } = useAllJobsContext();
 
-  const { jobs } = data;
-  console.log(jobs);
+  const { search, jobStatus, jobType, sort } = searchValues;
 
   /* Search & Filter Container */
   return (
@@ -22,37 +21,47 @@ const SearchFilterContainer = () => {
             dataIcon="search"
             type="search"
             placeholder="e.g. Lead Designer"
-            defaultValue="w"
+            defaultValue={search}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <FormRowSelect
             labelText="Status"
             name="jobStatus"
             list={["all", ...Object.values(JOB_STATUS)]}
-            defaultValue="all"
+            defaultValue={jobStatus}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <FormRowSelect
             labelText="Job Type"
             name="jobType"
             list={["all", ...Object.values(JOB_TYPE)]}
-            defaultValue="all"
+            defaultValue={jobType}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <FormRowSelect
             name="sort"
             list={Object.values(JOB_SORT_BY)}
-            defaultValue="newest"
+            defaultValue={sort}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
-          <Link className="btn-auth-submit" to="/dashboard/allJobs">
+          <Link
+            to="/dashboard/allJobs"
+            className="bg-primary-container text-black border-2 border-on-background p-sm brutalist-shadow text-mono-label uppercase font-bold brutalist-active flex items-center justify-center md:col-start-4"
+          >
             Reset Search Values
           </Link>
-          {/* TEMP !!!! */}
-          <SubmitButton text="Apply Filters" />
-          {/* <button className="bg-primary-container text-on-background border-2 border-on-background p-sm brutalist-shadow text-mono-label uppercase font-bold brutalist-active flex items-center justify-center md:col-start-4">
-            Apply Filters
-          </button> */}
         </div>
       </Form>
     </section>
