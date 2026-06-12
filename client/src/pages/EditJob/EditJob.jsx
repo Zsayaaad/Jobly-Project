@@ -54,14 +54,14 @@ const EditJob = () => {
                   name="jobType"
                   labelText="Job Type"
                   defaultValue={job.jobType}
-                  list={JOB_TYPE}
+                  list={Object.values(JOB_TYPE)}
                 />
 
                 <FormRowSelect
                   name="jobStatus"
                   labelText="Job Status"
                   defaultValue={job.jobStatus}
-                  list={JOB_STATUS}
+                  list={Object.values(JOB_STATUS)}
                 />
               </div>
             </div>

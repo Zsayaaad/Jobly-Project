@@ -12,7 +12,7 @@ const FormRowSelect = ({ name, labelText, list, defaultValue }) => {
           id={name}
           defaultValue={defaultValue}
         >
-          {Object.values(list).map((itemValue) => {
+          {list.map((itemValue) => {
             return (
               <option key={itemValue} value={itemValue}>
                 {itemValue}

@@ -1,9 +1,15 @@
 import { toast } from "react-toastify";
 import customFetch from "../../utils/customFetch";
 
-export const allJobsLoader = async () => {
+export const allJobsLoader = async ({ request }) => {
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+
   try {
-    const { data } = await customFetch.get("/jobs");
+    const { data } = await customFetch.get("/jobs", {
+      params,
+    });
 
     const now = Date.now();
     const jobs = data.jobs.map((job) => ({

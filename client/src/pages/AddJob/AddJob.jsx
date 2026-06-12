@@ -55,13 +55,13 @@ const AddJob = () => {
                 <FormRowSelect
                   name="jobType"
                   labelText="Job Type"
-                  list={JOB_TYPE}
+                  list={Object.values(JOB_TYPE)}
                 />
 
                 <FormRowSelect
                   name="jobStatus"
                   labelText="Job Status"
-                  list={JOB_STATUS}
+                  list={Object.values(JOB_STATUS)}
                 />
               </div>
             </div>
