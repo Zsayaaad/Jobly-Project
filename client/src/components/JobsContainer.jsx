@@ -7,7 +7,7 @@ const JobsContainer = () => {
   const { jobs } = data;
 
   if (jobs.length === 0) {
-    return <h2>No Jobs to display...</h2>;
+    return <h2 className="text-h2 mt-40">No Jobs to display...</h2>;
   }
 
   return (

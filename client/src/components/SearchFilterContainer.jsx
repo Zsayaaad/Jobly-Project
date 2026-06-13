@@ -5,10 +5,20 @@ import FormRowSelect from "./FormRowSelect";
 import { JOB_SORT_BY, JOB_STATUS, JOB_TYPE } from "../../../utils/constants";
 
 const SearchFilterContainer = () => {
-  const submit = useSubmit();
   const { searchValues } = useAllJobsContext();
-
   const { search, jobStatus, jobType, sort } = searchValues;
+  const submit = useSubmit();
+
+  const debounce = (onChange) => {
+    let timeout;
+    return (e) => {
+      const form = e.currentTarget.form;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        onChange(form);
+      }, 2000);
+    };
+  };
 
   /* Search & Filter Container */
   return (
@@ -22,9 +32,9 @@ const SearchFilterContainer = () => {
             type="search"
             placeholder="e.g. Lead Designer"
             defaultValue={search}
-            onChange={(e) => {
-              submit(e.currentTarget.form);
-            }}
+            onChange={debounce((form) => {
+              submit(form);
+            })}
           />
 
           <FormRowSelect
