@@ -334,6 +334,27 @@
     box-shadow: 0px 0px 0px 0px #ffffff;
   }
 
+  /* Nav Action Buttons (Navbar) - slightly smaller than hero action */
+  .btn-nav-action {
+    @apply text-black px-md py-sm border-2 border-black transition-all uppercase font-bold;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+  .btn-nav-action:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+  }
+  :where(.dark, .dark *) .btn-nav-action {
+    box-shadow: 2px 2px 0px 0px #ffffff;
+  }
+  :where(.dark, .dark *) .btn-nav-action:hover {
+    box-shadow: 0px 0px 0px 0px #ffffff;
+  }
+
   /* Common Brutalist Action Buttons */
   .btn-brutalist-action {
     @apply text-black border-2 border-black px-lg py-md uppercase flex items-center justify-center gap-2;

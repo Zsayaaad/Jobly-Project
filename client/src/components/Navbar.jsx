@@ -1,3 +1,4 @@
+import ExploreApp from "./ExploreApp";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
@@ -49,11 +50,10 @@ const Navbar = () => {
           Login
         </a>
 
+        <ExploreApp className="btn-nav-action bg-primary-container" />
+
         {/* Primary Action Button (Brutalist interaction states) */}
-        <a
-          href="/dashboard"
-          className="bg-surface-container-lowest text-on-background font-mono-label text-mono-label font-bold uppercase px-6 py-3 border-2 border-on-background brutalist-shadow transition-all duration-200 ease-in-out cursor-crosshair hover:bg-primary-container hover:text-black hover:shadow-[2px_2px_0px_0px_#1a1c1c] dark:hover:shadow-[2px_2px_0px_0px_#ffffff] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
-        >
+        <a href="/dashboard" className="btn-nav-action bg-white">
           Dashboard
         </a>
       </div>

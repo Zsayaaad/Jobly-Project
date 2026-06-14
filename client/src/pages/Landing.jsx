@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import { BenefitsSection, FeaturesSection, Navbar } from "../components";
+import {
+  BenefitsSection,
+  ExploreApp,
+  FeaturesSection,
+  Navbar,
+} from "../components";
 
 const Landing = () => {
   return (
@@ -28,11 +33,15 @@ const Landing = () => {
                   GET STARTED
                 </button>
               </Link>
-              <Link to="dashboard">
-                <button className="btn-hero-action bg-white">
+              {/* <Link to="dashboard">
+                <button className="">
                   VIEW DEMO
                 </button>
-              </Link>
+              </Link> */}
+              <ExploreApp
+                className="btn-hero-action bg-white"
+                text="View Demo"
+              />
             </div>
           </div>
 
