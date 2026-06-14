@@ -12,3 +12,4 @@ export { default as SearchFilterContainer } from "./SearchFilterContainer";
 export { default as JobsContainer } from "./JobsContainer";
 export { default as SubmitButton } from "./SubmitButton";
 export { default as StatCard } from "./StatCard";
+export { default as PaginationBtnContainer } from "./PaginationBtnContainer";
