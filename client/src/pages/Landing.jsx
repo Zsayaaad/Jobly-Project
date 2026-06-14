@@ -105,7 +105,7 @@ const Landing = () => {
             </p>
             <p className="font-body text-body text-zinc-400">
               Our users report a significant reduction in administrative
-              overhead during the first month of migration to Jobify.
+              overhead during the first month of migration to Jobly.
             </p>
           </div>
           <div className="col-span-12 md:col-span-8 bg-primary-container text-black p-lg brutalist-shadow-lg border-4 border-black flex flex-col md:flex-row items-center gap-lg">
@@ -134,7 +134,7 @@ const Landing = () => {
         <div className="max-w-[1440px] mx-auto grid grid-cols-12 gap-gutter">
           <div className="col-span-12 md:col-span-4">
             <div className="text-3xl font-black italic tracking-tighter text-on-background uppercase mb-md">
-              JOBIFY
+              JOBLY
             </div>
             <p className="font-mono-label text-mono-label uppercase mb-lg text-secondary">
               Built for the relentless seeker.
@@ -211,7 +211,7 @@ const Landing = () => {
           </div>
         </div>
         <div className="max-w-[1440px] mx-auto mt-xl pt-lg border-t-2 border-outline flex justify-between items-center font-mono-data uppercase text-secondary gap-sm">
-          <span>© 2026 JOBIFY CORE SYSTEM</span>
+          <span>© 2026 JOBLY CORE SYSTEM</span>
           <span className="text-primary">v1.0</span>
         </div>
       </footer>
