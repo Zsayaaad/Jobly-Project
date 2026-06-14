@@ -32,7 +32,6 @@ const Register = () => {
               labelText="Name"
               placeholder="JOHN DOE"
               dataIcon="person"
-              defaultValue="ziad"
             />
 
             {/* Last Name Field */}
@@ -42,7 +41,6 @@ const Register = () => {
               labelText="Last Name"
               placeholder="DOE"
               dataIcon="person"
-              defaultValue="elsayyad"
             />
 
             {/* Email Field */}
@@ -52,7 +50,6 @@ const Register = () => {
               labelText="Email Address"
               placeholder="USER@JOBIFY.COM"
               dataIcon="mail"
-              defaultValue="z@gmail.com"
             />
 
             {/* Location Field */}
@@ -62,7 +59,6 @@ const Register = () => {
               labelText="Location"
               placeholder="Cairo"
               dataIcon="location_on"
-              defaultValue="earth"
             />
 
             {/* Password Field */}
@@ -72,7 +68,6 @@ const Register = () => {
               labelText="Security Key"
               placeholder="********"
               dataIcon="lock"
-              defaultValue="secret1234"
             />
 
             {/* Terms Checkbox */}
