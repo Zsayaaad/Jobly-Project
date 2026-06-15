@@ -31,7 +31,13 @@ cloudinary.config({
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import cors from "cors";
-app.use(cors());
+app.use(
+  cors({
+    // ضع هنا رابط الفرونت إند بتاعك بالظبط بدون شرطة مائلة في الآخر
+    origin: "https://jobly-app-iota.vercel.app",
+    credentials: true, // مهم جداً جداً عشان يسمح بنقل الكوكيز
+  }),
+);
 
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
@@ -56,12 +62,12 @@ app.use("/api/v1/auth", authRouter);
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "./public", "index.html"));
 // });
-// app.get("/{*splat}", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
-// });
-app.get("*", (req, res) => {
+app.get("/{*splat}", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+// });
 
 // middleware to catch-all requests that doesn't match with the routes above
 // standard way to handle 404 ERROR
