@@ -6,7 +6,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
-// import cors from "cors";
+import cors from "cors";
 // app.use(
 //   cors({
 //     origin: "https://jobly-app-iota.vercel.app",
@@ -23,12 +23,27 @@ import cloudinary from "cloudinary";
 //     credentials: true,
 //   }),
 // );
-// const allowedOrigins = [
-//   "http://localhost:5100",
-//   "http://localhost:5173",
-//   "https://jobly-app-iota.vercel.app",
-// ];
 
+const allowedOrigins = [
+  "http://localhost:5100",
+  "http://localhost:5173",
+  "https://jobly-app-iota.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // السماح بالطلبات التي ليس لها Origin (مثل تطبيقات الموبايل أو Postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Blocked by CORS policy"));
+      }
+    },
+    credentials: true, // للسماح بنقل الكوكيز والتوكنز
+  }),
+);
 // app.use(
 //   cors({
 //     origin: allowedOrigins,
