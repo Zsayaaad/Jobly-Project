@@ -62,12 +62,12 @@ app.use("/api/v1/auth", authRouter);
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "./public", "index.html"));
 // });
-app.get("/{*splat}", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
-});
-// app.get("*", (req, res) => {
+// app.get("/{*splat}", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 // });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+});
 
 // middleware to catch-all requests that doesn't match with the routes above
 // standard way to handle 404 ERROR
