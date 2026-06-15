@@ -10,6 +10,15 @@
     {
       "source": "/api/v1/(.*)",
       "destination": "server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/client/dist/$1",
+      "check": true
+    },
+    {
+      "source": "/(.*)",
+      "destination": "server.js"
     }
   ]
 }
