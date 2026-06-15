@@ -42,11 +42,19 @@ export const login = async (req, res) => {
   //   sameSite: "none", // Changed from strict to none to allow cookie transfer across different domains
   //   maxAge: 1000 * 60 * 60 * 24, // 1 day in ms
   // });
+
+  // res.cookie("token", token, {
+  //   httpOnly: true,
+  //   secure: process.env.NODE_ENV === "production",
+  //   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  //   maxAge: 1000 * 60 * 60 * 24,
+  // });
+
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    maxAge: 1000 * 60 * 60 * 24,
+    secure: true, // إجبارية لتشغيل التشفير على Vercel HTTPS
+    sameSite: "none", // إجبارية للسماح بنقل التوكن بين دومين الفرونت ودومين الباك
+    maxAge: 1000 * 60 * 60 * 24, // 1 day in ms
   });
 
   res.status(StatusCodes.OK).json({ msg: "user logged in" });

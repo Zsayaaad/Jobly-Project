@@ -32,16 +32,8 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // السماح بالطلبات التي ليس لها Origin (مثل تطبيقات الموبايل أو Postman)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Blocked by CORS policy"));
-      }
-    },
-    credentials: true, // للسماح بنقل الكوكيز والتوكنز
+    origin: allowedOrigins, // تمرير القائمة مباشرة
+    credentials: true, // إجباري عشان الكوكيز والـ Auth يشتغلوا بين اللوكال وفيرسل
   }),
 );
 // app.use(
