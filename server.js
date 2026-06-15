@@ -6,15 +6,35 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
-import cors from "cors";
-app.use(
-  cors({
-    origin: "https://jobly-app-iota.vercel.app",
-    credentials: true, // مهم جداً جداً عشان يسمح بنقل الكوكيز
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+// import cors from "cors";
+// app.use(
+//   cors({
+//     origin: "https://jobly-app-iota.vercel.app",
+//     credentials: true, // مهم جداً جداً عشان يسمح بنقل الكوكيز
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   }),
+// );
+// const allowedOrigins = process.env.CLIENT_URL.split(",");
+
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   }),
+// );
+// const allowedOrigins = [
+//   "http://localhost:5100",
+//   "http://localhost:5173",
+//   "https://jobly-app-iota.vercel.app",
+// ];
+
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   }),
+// );
 
 // routes
 import jobRouter from "./routes/jobRouter.js";
@@ -93,6 +113,7 @@ const port = process.env.PORT || 5100;
 //   console.log(error);
 //   process.exit(1);
 // }
+
 // We connect to MongoDB without disabling the server in Vercel
 try {
   await mongoose.connect(process.env.MONGO_URL);
