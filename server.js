@@ -29,6 +29,10 @@ cloudinary.config({
 });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+import cors from "cors";
+app.use(cors());
+
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
 // Condition to log only in development
@@ -55,6 +59,9 @@ app.use("/api/v1/auth", authRouter);
 app.get("/{*splat}", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+// });
 
 // middleware to catch-all requests that doesn't match with the routes above
 // standard way to handle 404 ERROR
@@ -71,12 +78,26 @@ app.use(errorHandlerMiddleware);
  */
 const port = process.env.PORT || 5100;
 
+// try {
+//   await mongoose.connect(process.env.MONGO_URL);
+//   app.listen(port, () => {
+//     console.log(`Server is running on port ${port}...`);
+//   });
+// } catch (error) {
+//   console.log(error);
+//   process.exit(1);
+// }
+// We connect to MongoDB without disabling the server in Vercel
 try {
   await mongoose.connect(process.env.MONGO_URL);
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}...`);
-  });
+  if (process.env.NODE_ENV !== "production") {
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}...`);
+    });
+  }
 } catch (error) {
   console.log(error);
-  process.exit(1);
 }
+
+// Vercel's most important line
+export default app;
