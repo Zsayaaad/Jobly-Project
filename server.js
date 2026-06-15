@@ -6,6 +6,15 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
+import cors from "cors";
+app.use(
+  cors({
+    origin: "https://jobly-app-iota.vercel.app",
+    credentials: true, // مهم جداً جداً عشان يسمح بنقل الكوكيز
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 // routes
 import jobRouter from "./routes/jobRouter.js";
@@ -29,15 +38,6 @@ cloudinary.config({
 });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-import cors from "cors";
-app.use(
-  cors({
-    // ضع هنا رابط الفرونت إند بتاعك بالظبط بدون شرطة مائلة في الآخر
-    origin: "https://jobly-app-iota.vercel.app",
-    credentials: true, // مهم جداً جداً عشان يسمح بنقل الكوكيز
-  }),
-);
 
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
