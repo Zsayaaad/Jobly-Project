@@ -34,26 +34,10 @@ export const login = async (req, res) => {
 
   const token = createJWT({ userId: user._id, role: user.role });
 
-  // res.cookie("token", token, {
-  //   httpOnly: true, // CRITICAL: Prevents client-side JS from reading the cookie
-  //   // secure: process.env.NODE_ENV === "production", // Ensures cookie only sent over HTTPS only in production
-  //   secure: true, // Mandatory to be true as long as we use sameSite: 'none'
-  //   // sameSite: "strict", // Protects against CSRF
-  //   sameSite: "none", // Changed from strict to none to allow cookie transfer across different domains
-  //   maxAge: 1000 * 60 * 60 * 24, // 1 day in ms
-  // });
-
-  // res.cookie("token", token, {
-  //   httpOnly: true,
-  //   secure: process.env.NODE_ENV === "production",
-  //   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  //   maxAge: 1000 * 60 * 60 * 24,
-  // });
-
   res.cookie("token", token, {
-    httpOnly: true,
-    secure: true, // إجبارية لتشغيل التشفير على Vercel HTTPS
-    sameSite: "none", // إجبارية للسماح بنقل التوكن بين دومين الفرونت ودومين الباك
+    httpOnly: true, // CRITICAL: Prevents client-side JS from reading the cookie
+    secure: process.env.NODE_ENV === "production", // Ensures cookie only sent over HTTPS only in production
+    sameSite: "strict", // Protects against CSRF
     maxAge: 1000 * 60 * 60 * 24, // 1 day in ms
   });
 
@@ -62,11 +46,7 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   res.cookie("token", "logout", {
-    // httpOnly: true,
-    // expires: new Date(Date.now()),
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
     expires: new Date(Date.now()),
   });
   res.status(StatusCodes.OK).json({ msg: "user logged out" });

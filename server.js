@@ -6,42 +6,6 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
-import cors from "cors";
-// app.use(
-//   cors({
-//     origin: "https://jobly-app-iota.vercel.app",
-//     credentials: true, // مهم جداً جداً عشان يسمح بنقل الكوكيز
-//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   }),
-// );
-// const allowedOrigins = process.env.CLIENT_URL.split(",");
-
-// app.use(
-//   cors({
-//     origin: allowedOrigins,
-//     credentials: true,
-//   }),
-// );
-
-const allowedOrigins = [
-  "http://localhost:5100",
-  "http://localhost:5173",
-  "https://jobly-app-iota.vercel.app",
-];
-
-app.use(
-  cors({
-    origin: allowedOrigins, // تمرير القائمة مباشرة
-    credentials: true, // إجباري عشان الكوكيز والـ Auth يشتغلوا بين اللوكال وفيرسل
-  }),
-);
-// app.use(
-//   cors({
-//     origin: allowedOrigins,
-//     credentials: true,
-//   }),
-// );
 
 // routes
 import jobRouter from "./routes/jobRouter.js";
@@ -64,8 +28,9 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET, // Click 'View API Keys' above to copy your API secret
 });
 
+// Recreate __dirname because it is not available by default in ES Modules (import/export)
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
+// Serve production-ready static files (HTML, CSS, JS, images) from the React build folder
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
 // Condition to log only in development
@@ -86,19 +51,20 @@ app.use("/api/v1/jobs", authenticatedUser, jobRouter);
 app.use("/api/v1/users", authenticatedUser, userRouter);
 app.use("/api/v1/auth", authRouter);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./public", "index.html"));
-// });
+// Catch-all route: Redirect all requests to index.html so React Router can handle client-side routing without 404 errors
 app.get("/{*splat}", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
 // app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+// });
+// app.get("/{*splat}", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 // });
 
 // middleware to catch-all requests that doesn't match with the routes above
 // standard way to handle 404 ERROR
-app.use((req, res) => {
+app.use("/{*splat}", (req, res) => {
   res.status(404).json({ msg: "not found" });
 });
 
@@ -111,27 +77,12 @@ app.use(errorHandlerMiddleware);
  */
 const port = process.env.PORT || 5100;
 
-// try {
-//   await mongoose.connect(process.env.MONGO_URL);
-//   app.listen(port, () => {
-//     console.log(`Server is running on port ${port}...`);
-//   });
-// } catch (error) {
-//   console.log(error);
-//   process.exit(1);
-// }
-
-// We connect to MongoDB without disabling the server in Vercel
 try {
   await mongoose.connect(process.env.MONGO_URL);
-  if (process.env.NODE_ENV !== "production") {
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}...`);
-    });
-  }
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}...`);
+  });
 } catch (error) {
   console.log(error);
+  process.exit(1);
 }
-
-// Vercel's most important line
-export default app;
