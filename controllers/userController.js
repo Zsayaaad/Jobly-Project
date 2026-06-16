@@ -1,10 +1,8 @@
 import { StatusCodes } from "http-status-codes";
 import UserModel from "../models/UserModel.js";
 import JobModel from "../models/JobModel.js";
-import { JOB_STATUS } from "../utils/constants.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
-import { log } from "console";
 
 export const getCurrentUser = async (req, res) => {
   const user = await UserModel.findOne({ _id: req.user.userId });
