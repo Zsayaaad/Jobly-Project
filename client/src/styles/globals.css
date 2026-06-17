@@ -97,33 +97,29 @@
   --font-heading: "Inter", sans-serif;
   --font-mono: "Space Grotesk", monospace;
 
-  /* Animation Token */
-  --animate-float-tilt-right: float-tilt-right 6s ease-in-out infinite;
-  --animate-float-tilt-left: float-tilt-left 6s ease-in-out infinite;
+  /* Loading Animations */
+  --animate-data-flow: data-flow 1.5s linear infinite;
+  --animate-blink: blink 0.8s step-end infinite;
 }
 
-/* Keyframes for floating decorative shapes */
-@keyframes float-tilt-right {
+@keyframes data-flow {
   0% {
-    transform: translateY(0px) rotate(12deg);
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateY(-20px) rotate(17deg);
-  }
+
   100% {
-    transform: translateY(0px) rotate(12deg);
+    transform: translateX(100%);
   }
 }
 
-@keyframes float-tilt-left {
-  0% {
-    transform: translateY(0px) rotate(-6deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(-1deg);
-  }
+@keyframes blink {
+  0%,
   100% {
-    transform: translateY(0px) rotate(-6deg);
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
   }
 }
 
@@ -597,5 +593,14 @@
     align-items: center;
     justify-content: center;
     vertical-align: middle;
+  }
+
+  .loader-terminal {
+    @apply bg-black border-4 border-black;
+    box-shadow: 8px 8px 0px 0px var(--color-primary-container);
+  }
+
+  .loader-grid-line {
+    @apply w-px h-full bg-primary-container opacity-20;
   }
 }

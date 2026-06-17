@@ -1,7 +1,12 @@
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom";
 import { useState } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
-import { LogoutContainer, Sidebar, ThemeToggle } from "../../components";
+import {
+  Loading,
+  LogoutContainer,
+  Sidebar,
+  ThemeToggle,
+} from "../../components";
 import { useNavigate } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
@@ -9,6 +14,8 @@ import { toast } from "react-toastify";
 const DashboardLayout = () => {
   const { user } = useLoaderData();
   const navigate = useNavigate();
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === "loading";
 
   // State for Desktop Sidebar Collapse
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -91,7 +98,7 @@ const DashboardLayout = () => {
           className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? "lg:ml-20" : "lg:ml-72"}`}
         >
           <div className="p-6 lg:p-8">
-            <Outlet context={{ user }} />
+            {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
           </div>
         </div>
       </div>

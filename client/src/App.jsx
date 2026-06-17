@@ -25,14 +25,12 @@ import { deleteJobAction } from "./pages/DeleteJob/action";
 import { adminLoader } from "./pages/Admin/loader";
 import { profileAction } from "./pages/Profile/action";
 import { statsLoader } from "./pages/Stats/loader";
-
-const HydrateFallback = () => <div />;
+import { Loading } from "./components";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-    HydrateFallback,
     errorElement: <Error />,
     children: [
       {
@@ -53,7 +51,7 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <DashboardLayout />,
         loader: dashboardLoader,
-        HydrateFallback,
+        HydrateFallback: Loading,
         children: [
           {
             index: true,
@@ -69,7 +67,6 @@ const router = createBrowserRouter([
             path: "allJobs",
             element: <AllJobs />,
             loader: allJobsLoader,
-            HydrateFallback,
           },
           {
             path: "profile",

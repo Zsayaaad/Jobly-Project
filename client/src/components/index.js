@@ -14,3 +14,4 @@ export { default as SubmitButton } from "./SubmitButton";
 export { default as StatCard } from "./StatCard";
 export { default as PaginationBtnContainer } from "./PaginationBtnContainer";
 export { default as ExploreApp } from "./ExploreApp";
+export { default as Loading } from "./Loading";
