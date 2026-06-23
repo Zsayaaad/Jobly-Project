@@ -7,6 +7,7 @@ import { JOB_SORT_BY, JOB_STATUS, JOB_TYPE } from "../../../utils/constants";
 const SearchFilterContainer = () => {
   const { searchValues } = useAllJobsContext();
   const { search, jobStatus, jobType, sort } = searchValues;
+  // This hook automatically submits the form, without the user needing to press the "search|submit" button.
   const submit = useSubmit();
 
   const debounce = (onChange) => {

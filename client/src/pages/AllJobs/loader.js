@@ -2,11 +2,13 @@ import { toast } from "react-toastify";
 import customFetch from "../../utils/customFetch";
 
 export const allJobsLoader = async ({ request }) => {
+  // Reading the new Params from the URL
   const params = Object.fromEntries([
     ...new URL(request.url).searchParams.entries(),
   ]);
 
   try {
+    // Request is sent to the API with the new parameters:
     const { data } = await customFetch.get("/jobs", {
       params,
     });

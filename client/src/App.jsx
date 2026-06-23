@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import {
   AddJob,
   AllJobs,
@@ -26,6 +29,15 @@ import { adminLoader } from "./pages/Admin/loader";
 import { profileAction } from "./pages/Profile/action";
 import { statsLoader } from "./pages/Stats/loader";
 import { Loading } from "./components";
+import ErrorElement from "./components/ErrorElement";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -47,6 +59,7 @@ const router = createBrowserRouter([
         element: <Login />,
         action: loginAction,
       },
+
       {
         path: "dashboard",
         element: <DashboardLayout />,
@@ -62,6 +75,7 @@ const router = createBrowserRouter([
             path: "stats",
             element: <Stats />,
             loader: statsLoader,
+            errorElement: <ErrorElement />,
           },
           {
             path: "allJobs",
@@ -95,7 +109,12 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;
