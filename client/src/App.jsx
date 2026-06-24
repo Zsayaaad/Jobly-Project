@@ -34,7 +34,7 @@ import ErrorElement from "./components/ErrorElement";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 10,
+      staleTime: 1000 * 60 * 5,
     },
   },
 });
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
 
       {
         path: "dashboard",
-        element: <DashboardLayout />,
-        loader: dashboardLoader,
-        HydrateFallback: <Loading />,
+        element: <DashboardLayout queryClient={queryClient} />,
+        loader: dashboardLoader(queryClient),
+        HydrateFallback: Loading,
         children: [
           {
             index: true,

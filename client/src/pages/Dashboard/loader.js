@@ -1,10 +1,9 @@
 import { redirect } from "react-router-dom";
-import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
-export const dashboardLoader = async () => {
+import { userQuery } from "./queries";
+export const dashboardLoader = (queryClient) => async () => {
   try {
-    const { data } = await customFetch.get("/users/current-user");
-    return data;
+    return await queryClient.ensureQueryData(userQuery);
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return redirect("/");

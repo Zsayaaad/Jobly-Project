@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom";
+import { Link, Outlet, useNavigation } from "react-router-dom";
 import { useState } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import {
@@ -10,9 +10,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+import { userQuery } from "./queries";
 
 const DashboardLayout = () => {
-  const { user } = useLoaderData();
+  // const { user } = useLoaderData();
+  const { data } = useQuery(userQuery);
+  const { user } = data ?? {};
+
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === "loading";
