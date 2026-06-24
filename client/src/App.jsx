@@ -97,7 +97,7 @@ const router = createBrowserRouter([
           {
             path: "editJob/:id",
             element: <EditJob />,
-            loader: editJobLoader,
+            loader: editJobLoader(queryClient),
             action: editJobAction(queryClient),
           },
           {

@@ -1,9 +1,15 @@
 import { Form, useLoaderData } from "react-router-dom";
 import { FormRow, FormRowSelect, SubmitButton } from "../../components";
 import { JOB_STATUS, JOB_TYPE } from "../../../../utils/constants";
+import { useQuery } from "@tanstack/react-query";
+import { singleJobQuery } from "./queries";
 
 const EditJob = () => {
-  const { job } = useLoaderData();
+  const id = useLoaderData();
+
+  const { data } = useQuery(singleJobQuery(id));
+
+  const { job } = data;
 
   return (
     <main className="p-lg md:p-xl grow flex justify-center bg-background min-h-screen">
