@@ -4,7 +4,7 @@ const ErrorElement = () => {
   const error = useRouteError();
 
   console.log(error);
-  return <h1 className="text-h2">There was an error...</h1>;
+  return <h2 className="text-h2">There was an error...</h2>;
 };
 
 export default ErrorElement;

@@ -1,8 +1,11 @@
-import { useLoaderData } from "react-router-dom";
 import StatCard from "../../components/StatCard";
+import { useQuery } from "@tanstack/react-query";
+import { statsQuery } from "./queries";
 
 const Stats = () => {
-  const { defaultStats } = useLoaderData();
+  const { data } = useQuery(statsQuery);
+
+  const { defaultStats } = data ?? {};
 
   return (
     <div className="flex-1 overflow-y-auto p-md md:p-container-margin">

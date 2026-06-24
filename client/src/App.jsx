@@ -34,7 +34,7 @@ import ErrorElement from "./components/ErrorElement";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 10,
     },
   },
 });
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <DashboardLayout />,
         loader: dashboardLoader,
-        HydrateFallback: Loading,
+        HydrateFallback: <Loading />,
         children: [
           {
             index: true,
@@ -74,7 +74,8 @@ const router = createBrowserRouter([
           {
             path: "stats",
             element: <Stats />,
-            loader: statsLoader,
+            // This instance(queryClient) has the methods which we can also use to fetch the data with React query
+            loader: statsLoader(queryClient),
             errorElement: <ErrorElement />,
           },
           {
