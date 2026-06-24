@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { userQuery } from "./queries";
 
-const DashboardLayout = () => {
+const DashboardLayout = (queryClient) => {
   // const { user } = useLoaderData();
   const { data } = useQuery(userQuery);
   const { user } = data ?? {};
@@ -46,6 +46,7 @@ const DashboardLayout = () => {
   const logoutUser = async () => {
     navigate("/");
     await customFetch.get("/auth/logout");
+    queryClient.invalidateQueries();
     toast.success("Logout successful");
   };
 
