@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { userQuery } from "./queries";
 
-const DashboardLayout = (queryClient) => {
+const DashboardLayout = ({ queryClient }) => {
   // const { user } = useLoaderData();
   const { data } = useQuery(userQuery);
   const { user } = data ?? {};
