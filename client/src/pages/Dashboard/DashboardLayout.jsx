@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import {
   Loading,
@@ -27,6 +27,8 @@ const DashboardLayout = ({ queryClient }) => {
   // State for Mobile Sidebar Drawer
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+  const [isAuthError, setIsAuthError] = useState(false);
+
   const toggleSidebar = () => {
     // Check if we are on a mobile device (Tailwind's lg breakpoint is 1024px)
     if (window.innerWidth < 1024) {
@@ -49,6 +51,25 @@ const DashboardLayout = ({ queryClient }) => {
     queryClient.invalidateQueries();
     toast.success("Logout successful");
   };
+
+  customFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error?.response?.status === 401) {
+        setIsAuthError(true);
+      }
+
+      return Promise.reject(error);
+    },
+  );
+
+  useEffect(() => {
+    if (!isAuthError) return;
+
+    logoutUser();
+  }, [isAuthError]);
 
   return (
     <DashboardContext.Provider
