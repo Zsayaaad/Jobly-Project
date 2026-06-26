@@ -1,5 +1,5 @@
-import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom";
-import { useState } from "react";
+import { Link, Outlet, useNavigation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { DashboardContext } from "../../context/DashboardContext";
 import {
   Loading,
@@ -10,9 +10,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+import { userQuery } from "./queries";
 
-const DashboardLayout = () => {
-  const { user } = useLoaderData();
+const DashboardLayout = ({ queryClient }) => {
+  // const { user } = useLoaderData();
+  const { data } = useQuery(userQuery);
+  const { user } = data ?? {};
+
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === "loading";
@@ -21,6 +26,8 @@ const DashboardLayout = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   // State for Mobile Sidebar Drawer
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  const [isAuthError, setIsAuthError] = useState(false);
 
   const toggleSidebar = () => {
     // Check if we are on a mobile device (Tailwind's lg breakpoint is 1024px)
@@ -41,8 +48,28 @@ const DashboardLayout = () => {
   const logoutUser = async () => {
     navigate("/");
     await customFetch.get("/auth/logout");
+    queryClient.invalidateQueries();
     toast.success("Logout successful");
   };
+
+  customFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error?.response?.status === 401) {
+        setIsAuthError(true);
+      }
+
+      return Promise.reject(error);
+    },
+  );
+
+  useEffect(() => {
+    if (!isAuthError) return;
+
+    logoutUser();
+  }, [isAuthError]);
 
   return (
     <DashboardContext.Provider

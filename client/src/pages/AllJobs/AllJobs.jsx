@@ -5,9 +5,13 @@ import {
   SearchFilterContainer,
 } from "../../components";
 import { AllJobsContext } from "../../context/AllJobsContext";
+import { useQuery } from "@tanstack/react-query";
+import { allJobsQuery } from "./queries";
 
 const AllJobs = () => {
-  const { data, searchValues } = useLoaderData();
+  const { searchValues } = useLoaderData();
+
+  const { data } = useQuery(allJobsQuery(searchValues));
 
   const { totalJobs, numOfPages } = data;
 

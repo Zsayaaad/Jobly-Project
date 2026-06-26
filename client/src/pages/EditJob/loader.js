@@ -1,14 +1,16 @@
 import { toast } from "react-toastify";
-import customFetch from "../../utils/customFetch";
 import { redirect } from "react-router-dom";
+import { singleJobQuery } from "./queries";
 
-export const editJobLoader = async ({ params }) => {
-  try {
-    const { data } = await customFetch.get(`/jobs/${params.id}`);
+export const editJobLoader =
+  (queryClient) =>
+  async ({ params }) => {
+    try {
+      await queryClient.ensureQueryData(singleJobQuery(params.id));
 
-    return data;
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return redirect("/dashboard/allJobs");
-  }
-};
+      return params.id;
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      return redirect("/dashboard/allJobs");
+    }
+  };
