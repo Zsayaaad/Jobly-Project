@@ -1,8 +1,12 @@
 export const JOB_STATUS = {
   ACTIVE: "Active",
-  CLOSED: "Closed",
   URGENT: "Urgent",
   PENDING: "Pending",
+};
+
+export const UPDATE_JOB_STATUS = {
+  ...JOB_STATUS,
+  CLOSED: "Closed",
 };
 
 export const JOB_TYPE = {

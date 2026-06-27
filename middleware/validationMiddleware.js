@@ -4,7 +4,7 @@ import {
   NotFoundError,
   UnauthorizedError,
 } from "../errors/customErrors.js";
-import { JOB_STATUS, JOB_TYPE } from "../utils/constants.js";
+import { JOB_STATUS, JOB_TYPE, UPDATE_JOB_STATUS } from "../utils/constants.js";
 import mongoose from "mongoose";
 import jobModel from "../models/JobModel.js";
 import UserModel from "../models/UserModel.js";
@@ -49,7 +49,7 @@ export const validateJobInput = withValidationErrors([
     .isLength({ max: 50 })
     .withMessage("job location cannot exceed 100 characters"),
   body("jobStatus")
-    .isIn(Object.values(JOB_STATUS))
+    .isIn(Object.values(UPDATE_JOB_STATUS))
     .withMessage("invalid job status"),
   body("jobType").isIn(Object.values(JOB_TYPE)).withMessage("invalid job type"),
 ]);
