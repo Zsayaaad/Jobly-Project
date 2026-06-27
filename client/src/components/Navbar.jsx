@@ -38,25 +38,29 @@ const Navbar = () => {
           ))}
         </div>
 
-        <ThemeToggle />
+        <div className="flex justify-end"></div>
 
         {/* Actions */}
-        <div className="hidden sm:flex items-center gap-4 lg:gap-4 flex-1 justify-end">
-          <a
-            href="/login"
-            className="font-mono-label text-xs lg:text-mono-label font-bold uppercase text-on-background px-2 py-1 lg:px-4 lg:py-2 border-2 border-transparent transition-all duration-200 ease-in-out hover:bg-primary-container hover:text-black hover:border-on-background hover:cursor-crosshair"
-          >
-            Login
-          </a>
+        <div className=" flex flex-1 justify-end">
+          <ThemeToggle />
 
-          <ExploreApp className="btn-nav-action bg-primary-container cursor-pointer px-2 py-1 text-xs lg:px-md lg:py-sm lg:text-[13px]" />
+          <div className="hidden sm:flex items-center gap-4 lg:gap-4">
+            <a
+              href="/login"
+              className="font-mono-label text-xs lg:text-mono-label font-bold uppercase text-on-background px-2 py-1 lg:px-4 lg:py-2 border-2 border-transparent transition-all duration-200 ease-in-out hover:bg-primary-container hover:text-black hover:border-on-background hover:cursor-crosshair"
+            >
+              Login
+            </a>
 
-          <a
-            href="/dashboard"
-            className="btn-nav-action bg-white px-2 py-1 text-xs lg:px-md lg:py-sm lg:text-[13px]"
-          >
-            Dashboard
-          </a>
+            <ExploreApp className="btn-nav-action bg-primary-container cursor-pointer px-2 py-1 text-xs lg:px-md lg:py-sm lg:text-[13px]" />
+
+            <a
+              href="/dashboard"
+              className="btn-nav-action bg-white px-2 py-1 text-xs lg:px-md lg:py-sm lg:text-[13px]"
+            >
+              Dashboard
+            </a>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
