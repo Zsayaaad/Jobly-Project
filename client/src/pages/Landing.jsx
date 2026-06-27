@@ -29,17 +29,13 @@ const Landing = () => {
             </p>
             <div className="flex flex-wrap gap-md">
               <Link to="/login">
-                <button className="btn-hero-action bg-primary-container">
+                <button className="btn-hero-action bg-primary-container cursor-pointer">
                   GET STARTED
                 </button>
               </Link>
-              {/* <Link to="dashboard">
-                <button className="">
-                  VIEW DEMO
-                </button>
-              </Link> */}
+
               <ExploreApp
-                className="btn-hero-action bg-white"
+                className="btn-hero-action bg-white cursor-pointer"
                 text="View Demo"
               />
             </div>
@@ -118,7 +114,7 @@ const Landing = () => {
               </p>
             </div>
             <Link to="/login">
-              <button className="bg-white text-black font-mono-label text-mono-label px-xl py-lg border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all uppercase font-black text-xl shrink-0">
+              <button className="bg-white px-xl py-lg text-xl btn-hero-action cursor-pointer">
                 START TRACKING
               </button>
             </Link>
