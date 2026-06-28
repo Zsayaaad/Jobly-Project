@@ -4,8 +4,8 @@ import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { name: "Home", href: "/" },
-  { name: "Find Jobs", href: "dashboard/allJobs" },
-  { name: "Post Job", href: "dashboard" },
+  { name: "Find Jobs", href: "login" },
+  { name: "Post Job", href: "login" },
 ];
 
 const Navbar = () => {

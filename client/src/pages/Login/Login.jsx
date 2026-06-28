@@ -114,7 +114,7 @@ const Login = () => {
         {/* Footer Text */}
         <div className="mt-xl text-center">
           <p className="text-mono-data text-secondary uppercase">
-            © 2024 JOBIFY RECRUITMENT TECHNOLOGIES. ALL RIGHTS RESERVED.
+            © 2026 JOBIFY RECRUITMENT TECHNOLOGIES. ALL RIGHTS RESERVED.
           </p>
         </div>
       </main>
