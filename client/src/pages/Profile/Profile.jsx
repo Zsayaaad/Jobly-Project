@@ -7,7 +7,7 @@ const Profile = () => {
   const { name, lastName, email, location, avatar } = user;
 
   return (
-    <main className="min-h-screen p-lg md:p-xl flex justify-center">
+    <main className="p-md flex justify-center">
       <div className="w-full max-w-3xl">
         <div className="mb-xl">
           <h1 className="text-h1 text-on-surface">Profile Settings</h1>

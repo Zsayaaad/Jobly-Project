@@ -114,7 +114,7 @@ const Job = ({
               {/* We put action here in the Form cuz in delete we does not have Delete.jsx page.. we redirect to the same page */}
               <Form
                 method="post"
-                action={`../deleteJob/${_id}`}
+                action={`/dashboard/deleteJob/${_id}`}
                 onSubmit={() => setIsModalOpen(false)}
               >
                 <button

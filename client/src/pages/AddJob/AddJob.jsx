@@ -6,7 +6,7 @@ const AddJob = () => {
   const { user } = useOutletContext();
 
   return (
-    <main className="p-lg md:p-xl grow flex justify-center bg-background min-h-screen">
+    <main className="p-md grow flex justify-center bg-background ">
       <div className="w-full max-w-2xl">
         <div className="mb-lg">
           <h2 className="text-h1 uppercase leading-none">Create Listing</h2>
