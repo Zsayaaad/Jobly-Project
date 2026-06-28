@@ -1,7 +1,11 @@
-const Loading = () => {
+const Loading = ({ inline = false }) => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white font-mono">
-      <div className="w-80 p-6 loader-terminal">
+    <div
+      className={`flex items-center justify-center font-mono transition-all duration-300 ${
+        inline ? "w-full py-16 bg-transparent" : "min-h-screen bg-white"
+      }`}
+    >
+      <div className="w-80 p-6 loader-terminal shadow-xl rounded-md">
         <div className="flex justify-between items-center mb-4 text-primary-container text-xs font-bold uppercase tracking-widest">
           <span>System_Load</span>
           <span className="animate-blink">_ACTIVE</span>

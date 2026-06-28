@@ -125,7 +125,7 @@ const DashboardLayout = ({ queryClient }) => {
           className={`transition-all duration-300 ease-in-out ${isSidebarCollapsed ? "lg:ml-20" : "lg:ml-72"}`}
         >
           <div className="p-6 lg:p-8">
-            {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
+            {isPageLoading ? <Loading inline /> : <Outlet context={{ user }} />}
           </div>
         </div>
       </div>
