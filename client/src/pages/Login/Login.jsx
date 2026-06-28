@@ -11,10 +11,10 @@ import { Form } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background text-on-background p-gutter">
+    <div className="min-h-screen flex flex-col items-center justify-start pt-28 bg-background text-on-background p-gutter">
       <AuthHeader />
 
-      <main className="w-full max-w-[480px] mt-xl">
+      <main className="w-full max-w-[480px]">
         {/* Auth Card */}
         <div className="bg-surface-container-lowest border-4 border-on-background brutalist-shadow p-lg">
           <TabSwitcher activeTab="login" />
