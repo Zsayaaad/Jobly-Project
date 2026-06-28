@@ -24,7 +24,6 @@ const FormRow = ({
           {dataIcon}
         </span>
         <input
-          // className="w-full border-4 border-on-background p-5 pl-14 bg-surface-container-lowest text-on-background text-h3 text-lg focus:ring-0 focus:border-on-background focus:bg-primary-container/10 outline-none transition-all hover:bg-surface-container placeholder:text-secondary"
           className="w-full border-2 pl-14 border-on-background bg-surface-container-lowest p-md text-body focus:outline-none focus:border-primary focus:shadow-[2px_2px_0px_0px_var(--color-on-background)] transition-all"
           id={name}
           name={name}

@@ -1,6 +1,10 @@
 import { Form, useLoaderData } from "react-router-dom";
 import { FormRow, FormRowSelect, SubmitButton } from "../../components";
-import { JOB_STATUS, JOB_TYPE } from "../../../../utils/constants";
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+  UPDATE_JOB_STATUS,
+} from "../../../../utils/constants";
 import { useQuery } from "@tanstack/react-query";
 import { singleJobQuery } from "./queries";
 
@@ -67,7 +71,7 @@ const EditJob = () => {
                   name="jobStatus"
                   labelText="Job Status"
                   defaultValue={job.jobStatus}
-                  list={Object.values(JOB_STATUS)}
+                  list={Object.values(UPDATE_JOB_STATUS)}
                 />
               </div>
             </div>

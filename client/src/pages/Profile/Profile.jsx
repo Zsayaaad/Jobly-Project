@@ -1,13 +1,28 @@
 import { Form, useOutletContext } from "react-router-dom";
 import { FormRow, SubmitButton } from "../../components";
+import { useState } from "react";
 
 const Profile = () => {
   const { user } = useOutletContext();
-
   const { name, lastName, email, location, avatar } = user;
 
+  const [imagePreview, setImagePreview] = useState(null);
+
+  // This function works immediately when you select a file from your computer (onChange).
+  // It takes the file, converts it to a URL using URL.createObjectURL(file), and saves it in the State.
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  // Selecting the displayed image: If there is a preview, display it; otherwise, display the original avatar.
+  const displayedAvatar = imagePreview || avatar;
+
   return (
-    <main className="min-h-screen p-lg md:p-xl flex justify-center">
+    <main className="p-md flex justify-center">
       <div className="w-full max-w-3xl">
         <div className="mb-xl">
           <h1 className="text-h1 text-on-surface">Profile Settings</h1>
@@ -36,11 +51,11 @@ const Profile = () => {
                 className="profile-avatar group cursor-pointer flex items-center justify-center bg-primary-container text-4xl font-black text-black uppercase"
                 htmlFor="avatar"
               >
-                {avatar ? (
+                {displayedAvatar ? (
                   <img
                     alt={`${name} ${lastName}`}
                     className="h-full w-full object-cover"
-                    src={avatar}
+                    src={displayedAvatar}
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-primary-container text-4xl font-black text-black">
@@ -59,6 +74,7 @@ const Profile = () => {
                   id="avatar"
                   name="avatar"
                   type="file"
+                  onChange={handleImageChange}
                 />
               </label>
             </div>

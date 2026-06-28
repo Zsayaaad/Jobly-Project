@@ -4,7 +4,7 @@ import {
   NotFoundError,
   UnauthorizedError,
 } from "../errors/customErrors.js";
-import { JOB_STATUS, JOB_TYPE } from "../utils/constants.js";
+import { JOB_STATUS, JOB_TYPE, UPDATE_JOB_STATUS } from "../utils/constants.js";
 import mongoose from "mongoose";
 import jobModel from "../models/JobModel.js";
 import UserModel from "../models/UserModel.js";
@@ -33,11 +33,23 @@ const withValidationErrors = (validateValues) => {
 };
 
 export const validateJobInput = withValidationErrors([
-  body("company").notEmpty().withMessage("company is required"),
-  body("position").notEmpty().withMessage("position is required"),
-  body("jobLocation").notEmpty().withMessage("job location is required"),
+  body("company")
+    .notEmpty()
+    .withMessage("company is required")
+    .isLength({ max: 50 })
+    .withMessage("company cannot exceed 50 characters"),
+  body("position")
+    .notEmpty()
+    .withMessage("position is required")
+    .isLength({ max: 50 })
+    .withMessage("position cannot exceed 50 characters"),
+  body("jobLocation")
+    .notEmpty()
+    .withMessage("job location is required")
+    .isLength({ max: 50 })
+    .withMessage("job location cannot exceed 100 characters"),
   body("jobStatus")
-    .isIn(Object.values(JOB_STATUS))
+    .isIn(Object.values(UPDATE_JOB_STATUS))
     .withMessage("invalid job status"),
   body("jobType").isIn(Object.values(JOB_TYPE)).withMessage("invalid job type"),
 ]);
@@ -59,7 +71,11 @@ export const validateIdParam = withValidationErrors([
 ]);
 
 export const validateRegisterInput = withValidationErrors([
-  body("name").notEmpty().withMessage("name is required"),
+  body("name")
+    .notEmpty()
+    .withMessage("name is required")
+    .isLength({ max: 10 })
+    .withMessage("name cannot exceed 10 characters"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -74,8 +90,16 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage("password is required")
     .isLength({ min: 8 })
     .withMessage("password must be at least 8 characters long"),
-  body("lastName").notEmpty().withMessage("last name is required"),
-  body("location").notEmpty().withMessage("location is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .isLength({ max: 10 })
+    .withMessage("last name cannot exceed 10 characters"),
+  body("location")
+    .notEmpty()
+    .withMessage("location is required")
+    .isLength({ max: 50 })
+    .withMessage("location cannot exceed 50 characters"),
 ]);
 
 export const validateLoginInput = withValidationErrors([
@@ -88,7 +112,12 @@ export const validateLoginInput = withValidationErrors([
 ]);
 
 export const validateUpdateUserInput = withValidationErrors([
-  body("name").notEmpty().withMessage("name is required"),
+  body("name")
+    .notEmpty()
+    .withMessage("name is required")
+    .isLength({ max: 10 })
+    .withMessage("name cannot exceed 10 characters"),
+  ,
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -101,6 +130,14 @@ export const validateUpdateUserInput = withValidationErrors([
         throw new BadRequestError("email already exist");
     }),
 
-  body("lastName").notEmpty().withMessage("last name is required"),
-  body("location").notEmpty().withMessage("location is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .isLength({ max: 10 })
+    .withMessage("last name cannot exceed 10 characters"),
+  body("location")
+    .notEmpty()
+    .withMessage("location is required")
+    .isLength({ max: 50 })
+    .withMessage("location cannot exceed 50 characters"),
 ]);
