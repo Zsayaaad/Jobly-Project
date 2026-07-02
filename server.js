@@ -44,7 +44,17 @@ app.use(cookieParser());
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.use(helmet());
+// Fix CSP error in production: Allow images from Cloudinary and local blob previews
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", "data:", "https://res.cloudinary.com", "blob:"],
+      },
+    },
+  }),
+);
 
 app.use("/api/v1/jobs", authenticatedUser, jobRouter);
 app.use("/api/v1/users", authenticatedUser, userRouter);
