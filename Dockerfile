@@ -25,12 +25,12 @@ COPY . .
 # Copy built frontend assets from Stage 1 into client/dist
 COPY --from=client-build /app/client/dist ./client/dist
 
-# Expose server port (تأكد من أن المنفذ يطابق المنفذ المستخدم في server.js)
+# Expose server port (Make sure the port matches the port used in server.js)
 EXPOSE 5100
 
 USER node
 
-# إضافة فحص صحة التطبيق
+# Adding an app health check
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:5100/health || exit 1
 

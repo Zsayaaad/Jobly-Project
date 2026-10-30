@@ -69,31 +69,31 @@ app.use("/api/v1/users", authenticatedUser, userRouter);
 app.use("/api/v1/auth", authRouter);
 
 // 5. Catch-all route for React Client Routing (Excluding /api routes)
-// // Catch-all route: Redirect all requests to index.html so React Router can handle client-side routing without 404 errors
-// app.get("/{*splat}", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
-// });
-
-// 6. Catch-all for 404 (Unknown API endpoints)
-// // middleware to catch-all requests that doesn't match with the routes above
-// // standard way to handle 404 ERROR
-// app.use("/{*splat}", (req, res) => {
-//   res.status(404).json({ msg: "not found" });
-// });
-
-// 5. Catch-all route for React Client Routing (Excluding /api routes)
-// Catch-all routes for React SPA (excludes API requests)
-app.get("*", (req, res, next) => {
-  if (req.originalUrl.startsWith("/api")) {
-    return next(); // يمرره لـ middleware الـ 404 بالأسفل
-  }
+// Catch-all route: Redirect all requests to index.html so React Router can handle client-side routing without 404 errors
+app.get("/{*splat}", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
+
 // 6. Catch-all for 404 (Unknown API endpoints)
-// 404 handler for unmatched routes (especially API)
-app.use("*", (req, res) => {
+// middleware to catch-all requests that doesn't match with the routes above
+// standard way to handle 404 ERROR
+app.use("/{*splat}", (req, res) => {
   res.status(404).json({ msg: "not found" });
 });
+
+// // 5. Catch-all route for React Client Routing (Excluding /api routes)
+// // Catch-all routes for React SPA (excludes API requests)
+// app.get("*", (req, res, next) => {
+//   if (req.originalUrl.startsWith("/api")) {
+//     return next(); // يمرره لـ middleware الـ 404 بالأسفل
+//   }
+//   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+// });
+// // 6. Catch-all for 404 (Unknown API endpoints)
+// // 404 handler for unmatched routes (especially API)
+// app.use("*", (req, res) => {
+//   res.status(404).json({ msg: "not found" });
+// });
 
 // 7. Global Error Handler
 // TRIGGERED BY OUR EXISTING ROUTES IF THERE IS A VALID REQUEST AND HAS AN ERROR
